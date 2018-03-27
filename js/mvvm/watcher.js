@@ -11,10 +11,14 @@ Watcher.prototype = {
     this.run();
   },
   run: function () {
+    // 得到最新的值
     var value = this.get();
+    // 得到旧值
     var oldVal = this.value;
+    // 如果不相同
     if (value !== oldVal) {
       this.value = value;
+      // 调用回调函数更新对应的界面
       this.cb.call(this.vm, value, oldVal);
     }
   },
@@ -28,7 +32,9 @@ Watcher.prototype = {
   },
   get: function () {
     Dep.target = this;
+    // 获取当前表达式的值, 内部会导致属性的get()调用
     var value = this.getVMVal();
+
     Dep.target = null;
     return value;
   },
@@ -42,6 +48,7 @@ Watcher.prototype = {
     return val;
   }
 };
+/*
 
 const obj1 = {id: 1}
 const obj12 = {id: 2}
@@ -64,4 +71,5 @@ obj2.o1s = {
   2: obj12,
   3: obj13
 }
+*/
 

@@ -14,6 +14,7 @@ function MVVM(options) {
     me._proxy(key);
   });
 
+  // 对data进行监视
   observe(data, this);
 
   // 创建一个用来编译模板的compile对象

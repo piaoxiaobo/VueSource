@@ -153,7 +153,9 @@ var compileUtil = {
     // 如果存在调用来更新节点
     updaterFn && updaterFn(node, this._getVMVal(vm, exp));
 
+    // 创建表达式对应的watcher对象
     new Watcher(vm, exp, function (value, oldValue) {/*更新界面*/
+      // 当对应的属性值发生了变化时, 自动调用, 更新对应的节点
       updaterFn && updaterFn(node, value, oldValue);
     });
   },
