@@ -147,12 +147,13 @@ var compileUtil = {
 
   // 真正用于解析指令的方法
   bind: function (node, vm, exp, dir) {
+    /*实现初始化显示*/
     // 根据指令名(text)得到对应的更新节点函数
     var updaterFn = updater[dir + 'Updater'];
     // 如果存在调用来更新节点
     updaterFn && updaterFn(node, this._getVMVal(vm, exp));
 
-    new Watcher(vm, exp, function (value, oldValue) {
+    new Watcher(vm, exp, function (value, oldValue) {/*更新界面*/
       updaterFn && updaterFn(node, value, oldValue);
     });
   },
